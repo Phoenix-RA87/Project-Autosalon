@@ -1,0 +1,44 @@
+unit UDM;
+
+interface
+
+uses
+  SysUtils, Classes, DB, ADODB;
+
+type
+  TRADM = class(TDataModule)
+    ADOConnection1: TADOConnection;
+    ADOQueryPostavshik: TADOQuery;
+    ADOQueryAVTO: TADOQuery;
+    ADOQueryDog: TADOQuery;
+    ADOQueryReklamac: TADOQuery;
+    ADOQueryOtch: TADOQuery;
+    DataSourcePostavshik: TDataSource;
+    DataSourceAVTO: TDataSource;
+    DataSourceDog: TDataSource;
+    DataSourceReklamac: TDataSource;
+    DataSourceOtch: TDataSource;
+    ADOStoredProcVvod_Postavshik: TADOStoredProc;
+    ADOStoredProcVvod_AVTO: TADOStoredProc;
+    ADOStoredProcVvod_Dog: TADOStoredProc;
+    ADOStoredProcVvod_Reklamac: TADOStoredProc;
+    ADOQuery1: TADOQuery;
+    DataSource1: TDataSource;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  RADM: TRADM;
+
+implementation
+
+uses UVD, UVA, UVR, UKa, UVP;
+
+{$R *.dfm}
+
+
+
+end.

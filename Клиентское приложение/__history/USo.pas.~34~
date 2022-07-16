@@ -1,0 +1,139 @@
+unit USo;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, Grids, DBGrids, ExtCtrls, StdCtrls, Buttons, DBCtrls, ComCtrls,
+  ComObj, Excel2000, jpeg, ShellApi;
+
+type
+  TRASo = class(TForm)
+    Panel1: TPanel;
+    Panel2: TPanel;
+    DBGrid1: TDBGrid;
+    GroupBox1: TGroupBox;
+    Image1: TImage;
+    Image2: TImage;
+    GroupBox2: TGroupBox;
+    Label1: TLabel;
+    Label2: TLabel;
+    DateTimePicker1: TDateTimePicker;
+    DateTimePicker2: TDateTimePicker;
+    GroupBox3: TGroupBox;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    Image3: TImage;
+    BitBtn3: TBitBtn;
+    BitBtn4: TBitBtn;
+    BitBtn5: TBitBtn;
+    procedure FormActivate(Sender: TObject);
+    procedure BitBtn3Click(Sender: TObject);
+    procedure DateTimePicker2Change(Sender: TObject);
+    procedure DateTimePicker1Change(Sender: TObject);
+    procedure BitBtn5Click(Sender: TObject);
+    procedure BitBtn4Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  RASo: TRASo;
+  s:string;
+  f1:textfile;
+
+implementation
+
+uses UDM;
+
+{$R *.dfm}
+
+procedure TRASo.BitBtn3Click(Sender: TObject);
+begin
+assignfile(f1,extractfiledir(Application.ExeName) + '\SvodOTCH.html');
+ReWrite(f1);
+
+writeln(f1,'<html>');
+writeln(f1,'<body>');
+writeln(f1,'<p></p>');
+
+writeln(f1,'<table>');
+
+writeln(f1,'<th>'+'№ Пост'+'</th>');
+writeln(f1,'<th>'+'НаимПост'+'</th>');
+writeln(f1,'<th>'+'Марка'+'</th>');
+writeln(f1,'<th>'+'Модель'+'</th>');
+writeln(f1,'<th>'+'Сумма р.'+'</th>');
+writeln(f1,'<th>'+'Кол - во продано'+'</th>');
+writeln(f1,'<th>'+'Кол - во рекламаций'+'</th>');;
+
+RADM.ADOQueryOtch.First;
+while not RADM.ADOQueryOtch.Eof do
+begin
+  writeln(f1,'<tr>');
+
+writeln(f1,'<td>'+RADM.ADOQueryOtch.FieldByName('N_Post').AsString+'</td>');
+writeln(f1,'<td>'+RADM.ADOQueryOtch.FieldByName('NaimPost').AsString+'</td>');
+writeln(f1,'<td>'+RADM.ADOQueryOtch.FieldByName('Marka').AsString+'</td>');
+writeln(f1,'<td>'+RADM.ADOQueryOtch.FieldByName('Model').AsString+'</td>');
+writeln(f1,'<td>'+RADM.ADOQueryOtch.FieldByName('Summa').AsString+'</td>');
+writeln(f1,'<td>'+RADM.ADOQueryOtch.FieldByName('KolProdano').AsString+'</td>');
+writeln(f1,'<td>'+RADM.ADOQueryOtch.FieldByName('KolReklamac').AsString+'</td>');
+writeln(f1,'</tr>');
+RADM.ADOQueryOtch.Next;
+end;
+writeln(f1,'</table>');
+writeln(f1,'</body>');
+writeln(f1,'</html>');
+closefile(f1);
+
+shellexecute(Handle,'open', Pchar(ExtractFileDir(Application.ExeName)+'\SvodOTCH.html'), nil, nil, SW_SHOWNORMAL);
+
+end;
+
+procedure TRASo.BitBtn4Click(Sender: TObject);  // Диалоговое окно - Закрытие формы программы.
+begin
+if MessageDlg('Закончить работу программы ?', mtConfirmation,[mbOk, mbCancel], 0) = mrOk then
+begin
+Close;
+Application.Terminate;
+end;
+end;
+
+procedure TRASo.BitBtn5Click(Sender: TObject); // Диалоговое окно - Выход из программы.
+begin
+if MessageDlg('Вернуться в Главное меню ?', mtConfirmation,[mbOk, mbCancel], 0) = mrOk then
+begin
+RASo.Close;
+end;
+end;
+
+procedure TRASo.DateTimePicker1Change(Sender: TObject);
+begin
+DateTimePicker2Change(Self);
+end;
+
+procedure TRASo.DateTimePicker2Change(Sender: TObject);
+begin
+RADM.ADOQueryOtch.SQL.Text:= 'exec SvodOTCH ' + QuotedStr(DateToStr(DateTimePicker1.date))+', '+QuotedStr(DateToStr(DateTimePicker2.date));
+RADM.ADOQueryOtch.Open;
+
+  DBGrid1.Columns.Items[0].Title.Caption :='№ Пост ';
+    DBGrid1.Columns.Items[1].Title.Caption :='НаимПост';
+     DBGrid1.Columns.Items[2].Title.Caption :='Марка';
+      DBGrid1.Columns.Items[3].Title.Caption :='Модель';
+       DBGrid1.Columns.Items[4].Title.Caption :='Сумма р.';
+        DBGrid1.Columns.Items[5].Title.Caption :='Кол-во продано';
+         DBGrid1.Columns.Items[6].Title.Caption :='Кол-во рекламаций';
+end;
+
+procedure TRASo.FormActivate(Sender: TObject);
+begin
+DateTimePicker1.Date:=date();
+DateTimePicker2.Date:=date();
+DateTimePicker1Change(Self);
+end;
+
+end.

@@ -1,0 +1,23 @@
+unit UDM;
+
+interface
+
+uses
+  SysUtils, Classes;
+
+type
+  TRADM = class(TDataModule)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  RADM: TRADM;
+
+implementation
+
+{$R *.dfm}
+
+end.

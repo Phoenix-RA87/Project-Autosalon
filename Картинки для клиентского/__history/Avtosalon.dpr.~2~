@@ -1,0 +1,15 @@
+program Avtosalon;
+
+uses
+  Forms,
+  Menu in 'Menu.pas' {RAmenu},
+  VDog in 'VDog.pas' {RAVDog};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.CreateForm(TRAmenu, RAmenu);
+  Application.CreateForm(TRAVDog, RAVDog);
+  Application.Run;
+end.

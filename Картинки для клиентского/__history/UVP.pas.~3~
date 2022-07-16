@@ -1,0 +1,46 @@
+unit UVP;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, Grids, DBGrids, ExtCtrls, StdCtrls, Buttons, jpeg;
+
+type
+  TRAVP = class(TForm)
+    Image1: TImage;
+    Image2: TImage;
+    Panel1: TPanel;
+    DBGrid1: TDBGrid;
+    LabeledEdit1: TLabeledEdit;
+    LabeledEdit2: TLabeledEdit;
+    BitBtn1: TBitBtn;
+    procedure BitBtn1Click(Sender: TObject);
+
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  RAVP: TRAVP;
+
+implementation
+
+{$R *.dfm}
+
+
+
+procedure TRAVP.BitBtn1Click(Sender: TObject);
+begin
+RADM.ADOQuery.SQL.Text:=''
+
+RADM.ADOQuery.ExecSQL;
+RADM.ADOQueryP.Close;
+RADM.ADOQueryP.Open;
+
+Image2.Visible:=True;
+end;
+
+end.

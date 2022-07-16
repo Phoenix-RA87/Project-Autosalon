@@ -1,0 +1,28 @@
+unit DM;
+
+interface
+
+uses
+  SysUtils, Classes, DB, ADODB;
+
+type
+  TRADM = class(TDataModule)
+    ADOConnection1: TADOConnection;
+    ADOQuery1: TADOQuery;
+    ADOQuery2: TADOQuery;
+    ADOQuery3: TADOQuery;
+    ADOQuery4: TADOQuery;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  RADM: TRADM;
+
+implementation
+
+{$R *.dfm}
+
+end.

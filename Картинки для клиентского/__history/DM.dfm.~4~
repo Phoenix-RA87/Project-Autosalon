@@ -1,0 +1,45 @@
+object RADM: TRADM
+  OldCreateOrder = False
+  Height = 269
+  Width = 594
+  object ADOConnection1: TADOConnection
+    Left = 40
+    Top = 16
+  end
+  object ADOQuery1: TADOQuery
+    Parameters = <>
+    Left = 136
+    Top = 16
+  end
+  object ADOQuery2: TADOQuery
+    Parameters = <>
+    Left = 208
+    Top = 16
+  end
+  object ADOQuery3: TADOQuery
+    Parameters = <>
+    Left = 280
+    Top = 16
+  end
+  object ADOQuery4: TADOQuery
+    Parameters = <>
+    Left = 360
+    Top = 16
+  end
+  object DataSource1: TDataSource
+    Left = 136
+    Top = 88
+  end
+  object DataSource2: TDataSource
+    Left = 208
+    Top = 88
+  end
+  object DataSource3: TDataSource
+    Left = 288
+    Top = 88
+  end
+  object DataSource4: TDataSource
+    Left = 360
+    Top = 88
+  end
+end

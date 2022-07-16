@@ -1,0 +1,13 @@
+program Avtosalon;
+
+uses
+  Forms,
+  UMenu in 'UMenu.pas' {RAmenu};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.CreateForm(TRAmenu, RAmenu);
+  Application.Run;
+end.

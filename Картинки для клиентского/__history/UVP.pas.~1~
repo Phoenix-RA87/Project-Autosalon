@@ -1,0 +1,24 @@
+unit UVP;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs;
+
+type
+  TRAVP = class(TForm)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  RAVP: TRAVP;
+
+implementation
+
+{$R *.dfm}
+
+end.

@@ -1,0 +1,21 @@
+program Avtosalon;
+
+uses
+  Forms,
+  Menu in 'Menu.pas' {RAmenu},
+  VDog in 'VDog.pas' {RAVDog},
+  DM in 'DM.pas' {RADM: TDataModule},
+  VAVTO in 'VAVTO.pas' {RAAVTO},
+  VPokup in 'VPokup.pas' {RAVPokup};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.CreateForm(TRAmenu, RAmenu);
+  Application.CreateForm(TRAVDog, RAVDog);
+  Application.CreateForm(TRADM, RADM);
+  Application.CreateForm(TRAAVTO, RAAVTO);
+  Application.CreateForm(TRAVPokup, RAVPokup);
+  Application.Run;
+end.

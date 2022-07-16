@@ -1,0 +1,74 @@
+unit UVP;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, Grids, DBGrids, ExtCtrls, StdCtrls, Buttons, jpeg;
+
+type
+  TRAVP = class(TForm)
+    Panel1: TPanel;
+    DBGrid1: TDBGrid;
+    Panel2: TPanel;
+    GroupBox1: TGroupBox;
+    Image1: TImage;
+    Image2: TImage;
+    BitBtn1: TBitBtn;
+    LabeledEdit1: TLabeledEdit;
+    procedure BitBtn1Click(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  RAVP: TRAVP;
+
+implementation
+
+uses UDM, UVA;
+
+{$R *.dfm}
+
+
+
+
+procedure TRAVP.BitBtn1Click(Sender: TObject);
+
+
+
+begin
+  if Length(Trim(LabeledEdit1.Text)) = 0 then
+   begin
+     MessageDlg('Вы не указали Наименование Поставщика!',mtError,[mbOk],0);
+     Exit     //Выход
+  end;
+
+
+RADM.ADOStoredProcVvod_Postavshik.Parameters.ParamByName('@NaimPost').Value:=(LabeledEdit1.Text);
+RADM.ADOStoredProcVvod_Postavshik.ExecProc;
+
+MessageBox(Handle,'Новый Поставщик добавлен.', 'Сообщение', mtError,[mbOk],0);
+
+RADM.ADOQueryPostavshik.Close;
+RADM.ADOQueryPostavshik.Open;
+
+DBGrid1.Columns.Items[0].Title.Caption :='№ Пост';
+DBGrid1.Columns.Items[1].Title.Caption :='НаимПост';
+
+Image2.Visible:=True;
+end;
+
+procedure TRAVP.FormActivate(Sender: TObject);
+begin
+RADM.ADOQueryPostavshik.Active:=True;
+RADM.ADOQueryPostavshik.Open;
+DBGrid1.Columns.Items[0].Title.Caption :='№ Пост';
+DBGrid1.Columns.Items[1].Title.Caption :='НаимПост';
+end;
+
+end.

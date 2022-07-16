@@ -1,0 +1,5 @@
+object RADM: TRADM
+  OldCreateOrder = False
+  Height = 269
+  Width = 594
+end

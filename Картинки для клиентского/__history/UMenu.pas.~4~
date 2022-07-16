@@ -1,0 +1,39 @@
+unit UMenu;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, jpeg, ExtCtrls, StdCtrls, Buttons;
+
+type
+  TRAmenu = class(TForm)
+    Image1: TImage;
+    ComboBox1: TComboBox;
+    Edit1: TEdit;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    BitBtn3: TBitBtn;
+    BitBtn4: TBitBtn;
+    BitBtn5: TBitBtn;
+    BitBtn6: TBitBtn;
+    procedure BitBtn2Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  RAmenu: TRAmenu;
+
+implementation
+
+{$R *.dfm}
+
+procedure TRAmenu.BitBtn2Click(Sender: TObject);
+begin
+Close();
+end;
+
+end.

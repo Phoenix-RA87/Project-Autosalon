@@ -1,0 +1,54 @@
+ALTER TABLE AVTO ADD    
+
+    FOREIGN KEY ( N_Post )
+
+    REFERENCES  Postavshik ( N_Post )
+
+;
+
+
+
+ALTER TABLE Dog ADD   
+
+    FOREIGN KEY ( KodTovara )
+
+    REFERENCES  AVTO ( KodTovara )
+
+;
+
+
+
+
+
+
+ALTER TABLE Reklamac  ADD     
+
+    FOREIGN KEY ( N_Dog )
+
+    REFERENCES  Dog ( N_Dog )
+
+;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

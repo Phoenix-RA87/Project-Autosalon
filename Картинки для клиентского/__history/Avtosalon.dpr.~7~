@@ -1,0 +1,31 @@
+program Avtosalon;
+
+uses
+  Forms,
+  Menu in 'Menu.pas' {RAmenu},
+  VDog in 'VDog.pas' {RAVDog},
+  DM in 'DM.pas' {RADM: TDataModule},
+  VAVTO in 'VAVTO.pas' {RAAVTO},
+  VPokup in 'VPokup.pas' {RAVPokup},
+  PDog in 'PDog.pas' {RAPDog},
+  VReklamac in 'VReklamac.pas' {RAVReklamac},
+  KAVTO in 'KAVTO.pas' {RAKAVTO},
+  Jpa in 'Jpa.pas' {RAJpa},
+  Jpr in 'Jpr.pas' {RAJpr};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.CreateForm(TRAmenu, RAmenu);
+  Application.CreateForm(TRAVDog, RAVDog);
+  Application.CreateForm(TRADM, RADM);
+  Application.CreateForm(TRAAVTO, RAAVTO);
+  Application.CreateForm(TRAVPokup, RAVPokup);
+  Application.CreateForm(TRAPDog, RAPDog);
+  Application.CreateForm(TRAVReklamac, RAVReklamac);
+  Application.CreateForm(TRAKAVTO, RAKAVTO);
+  Application.CreateForm(TRAJpa, RAJpa);
+  Application.CreateForm(TRAJpr, RAJpr);
+  Application.Run;
+end.
